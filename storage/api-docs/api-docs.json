@@ -1,0 +1,244 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Rest API",
+        "description": "Laravel project to practice Rest API development with L5 Swagger OpenApi",
+        "contact": {
+            "name": "Mico Snars",
+            "email": "micosnars@gmail.com"
+        },
+        "version": "1.0",
+        "x-logo": {
+            "url": "https://miro.medium.com/v2/resize:fit:1200/1*J3G3akaMpUOLegw0p0qthA.png"
+        }
+    },
+    "paths": {
+        "/api/books": {
+            "get": {
+                "tags": [
+                    "books"
+                ],
+                "summary": "Display a listing of items",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "books"
+                ],
+                "summary": "Store a newly created item",
+                "operationId": "store",
+                "requestBody": {
+                    "description": "Book object that needs to be updated",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Book"
+                            },
+                            "example": {
+                                "title": "Eating Clean",
+                                "author": "Robb Wolf",
+                                "publisher": "Kawan Pustaka",
+                                "publication_year": "2016",
+                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
+                                "description": "The book is about eating clean and healthy food",
+                                "price": "100000"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/books/{id}": {
+            "get": {
+                "tags": [
+                    "books"
+                ],
+                "summary": "Display the specified item",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of item that needs to be displayed",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Item not found"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "books"
+                ],
+                "summary": "Update the specified item",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of item that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Book object that needs to be updated",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Book"
+                            },
+                            "example": {
+                                "title": "Eating Clean",
+                                "author": "Robb Wolf",
+                                "publisher": "Kawan Pustaka",
+                                "publication_year": "2016",
+                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
+                                "description": "The book is about eating clean and healthy food",
+                                "price": "100000"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "404": {
+                        "description": "Item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "books"
+                ],
+                "summary": "Delete the specified item",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of item that needs to be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Book": {
+                "title": "Book model",
+                "description": "Book model",
+                "required": [
+                    "title",
+                    "author"
+                ],
+                "xml": {
+                    "name": "Book"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "books",
+            "description": "books"
+        }
+    ]
+}
